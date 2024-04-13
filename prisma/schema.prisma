@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Team {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(255)
+  city      String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  players   Player[]
+}
+
+enum Position {
+  QB
+  RB
+  WR
+  TE
+  OL
+  DL
+  LB
+  CB
+  S
+}
+
+model Player {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(255)
+  number    Int      @unique
+  position  Position
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  teamId    String   @map("belongsToId")
+  team      Team     @relation(fields: [teamId], references: [id])
+}
