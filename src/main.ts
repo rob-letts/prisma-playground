@@ -1,15 +1,7 @@
-import express from 'express';
-import path from 'path';
+import { app } from './server'
 
-const PORT = 3000;
-const app = express();
-
-app.get('/', (_, res) => {
-  console.log("GET /")
-  res.status(200);
-  res.sendFile(path.resolve('src/index.html'));
-});
+const PORT = 3000
 
 app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}/`);
-});
+  console.log(`Server listening at http://localhost:${PORT}`)
+})
