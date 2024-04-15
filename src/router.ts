@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 export const router = Router()
 
-function middleware (req: { path: String }, res: Object, next: Function) {
+function middleware(req: { path: String }, res: Object, next: Function) {
   console.log(`MIDDLE WARE TO CHECK PATH: ${req.path}`)
   next()
 }

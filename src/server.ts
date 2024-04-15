@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import path from 'path'
 import { router } from './router'
+import { protect } from './modules/auth'
 
 export const app = express()
 app.use(morgan('dev'))
@@ -13,4 +14,4 @@ app.get('/', (req, res)  => {
   res.sendFile(path.resolve('index.html'))
 })
 
-app.use('/api', router)
+app.use('/api', protect, router)
